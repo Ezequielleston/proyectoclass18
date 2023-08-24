@@ -1,0 +1,16 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}ESTA ES LA PAGINA DE TODOS NUESTROS AUTOS {% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>AUTOS</h1>
+<h3>Marcas y Modelos</h3>
+<ui>
+    {% for cursos in curso %}
+        <li>{{ autos.marca }} - {{autos.modelo}}</li>
+    {% endfor %}
+</ui>        
+{% endblock %}
+

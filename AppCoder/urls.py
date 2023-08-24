@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import crear_curso, listar_cursos, profesores, estudiantes, cursos
+from .views import crear_autos, listar_autos, camionetas, motos, autos
 
 
 urlpatterns = [
-    path("crear_curso/", crear_curso),
-    path("listar_cursos/", listar_cursos),
-    path("profesores/", profesores, name="profesores"),
-    path("estudiantes/", estudiantes, name="estudiantes"),
-    path("cursos/", cursos, name="cursos"),
+    path("crear_autos/", crear_autos),
+    path("listar_autos/", listar_autos),
+    path("camionetas/", camionetas, name="camionetas"),
+    path("motos/", motos, name="motos"),
+    path("autos/", autos, name="autos"),
 
 ]
