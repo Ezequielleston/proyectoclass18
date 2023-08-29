@@ -8,5 +8,5 @@ urlpatterns = [
     path("camionetas/", camionetas, name="camionetas"),
     path("motos/", motos, name="motos"),
     path("autos/", autos, name="autos"),
-
+    
 ]

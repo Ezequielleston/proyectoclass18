@@ -2,15 +2,18 @@
 
 {% load static %}
 
-{% block titulo %}ESTA ES LA PAGINA DE TODOS NUESTROS AUTOS {% endblock %}
+{% block titulo %}FORMULARIO DE NUESTROS AUTOS{% endblock %}
 
 {% block contenido_que_cambia %}
-<h1>AUTOS</h1>
-<h3>Marcas y Modelos</h3>
-<ui>
-    {% for cursos in curso %}
-        <li>{{ autos.marca }} - {{autos.modelo}}</li>
-    {% endfor %}
-</ui>        
-{% endblock %}
+    <h2>FORMULARIO</h2>
+    <form action="% url 'autos' %" method="POST"> {% csrf_token %}
 
+        {{ formulario.as_p }}
+        
+        <input type="submit" value="GUARDAR AUTO">
+
+
+    </form>  
+    
+    <h3>{{ mensaje }}</h3>
+{% endblock %}
