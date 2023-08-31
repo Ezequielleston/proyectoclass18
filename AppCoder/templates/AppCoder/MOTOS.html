@@ -2,9 +2,19 @@
 
 {% load static %}
 
-{% block titulo %}ESTA ES LA PAGINA DE TODAS NUESTRAS MOTOS {% endblock %}
+{% block titulo %}FORMULARIO DE MOTOS{% endblock %}
 
 {% block contenido_que_cambia %}
-    <h1>MOTOS</h1>
-    <h3>Marcas y Modelos</h3>
+    <h1>FORMULARIO MOTOS</h1>
+    <form action="{% url 'motos' %}" method="POST"> {% csrf_token %}
+
+        {{ formulario.as_p }}
+        
+        <input type="submit" value="GUARDAR MOTO">
+
+
+    </form>  
+    
+    <h3>{{ mensaje }}</h3>
+    
 {% endblock %}

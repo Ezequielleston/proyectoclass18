@@ -2,18 +2,17 @@
 
 {% load static %}
 
-{% block titulo %}ESTA ES LA PAGINA DE TODAS NUESTRAS CAMIONETAS {% endblock %}
+{% block titulo %}FORMULARIO DE CAMIONETAS{% endblock %}
 
 {% block contenido_que_cambia %}
 <h1>FORMULARIO CAMIONETAS</h1>
- 
-<form action="{% url 'camionetas' %}" method="post"> {% csrf_token %}
+<form action="{% url 'camionetas' %}" method="POST"> {% csrf_token %}
     <table>
 
     {{ formulario.as_table }}
 
     </table>
-    <input type="submit" value="Agregar">
+    <input type="submit" value="GUARDAR CAMIONETA">
 </form>
 
 <h3>{{ mensaje }}</h3>

@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Autos, Camionetas
+from .models import Autos, Camionetas, Motos
 from django.http import HttpResponse
-from .forms import Autosform, Camionetasform
+from .forms import Autosform, Camionetasform, Motosform
 # Create your views here.
 
 def crear_autos(request):
@@ -39,14 +39,27 @@ def camionetas(request):
         else:
             return render(request,"AppCoder/CAMIONETAS.html", {"mensaje": "Datos invalidos"})
     else:    
-        
         formulario_camionetas=Camionetasform()
+        return render(request,"AppCoder/CAMIONETAS.html", {"formulario":formulario_camionetas})        
 
-    return render(request,"AppCoder/CAMIONETAS.html", {"formulario":formulario_camionetas})        
 
 def motos(request):
-    return render(request,"AppCoder/MOTOS.html")
+    if request.method=="POST":
+        form=Motosform(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            marca=info["marca"]
+            modelo=info["modelo"]
+            motos=Motos(marca=marca,modelo=modelo)
+            motos.save()
+            return render(request,"AppCoder/MOTOS.html", {"mensaje":"Moto creada"})
+        else:
+            return render(request,"AppCoder/MOTOS.html", {"mensaje": "Datos invalidos"})
+    else:    
+        formulario_motos=Motosform()
+        return render(request,"AppCoder/MOTOS.html", {"formulario":formulario_motos})
 
+    
 def autos(request):
     if  request.method=="POST":
         form=Autosform(request.POST)
@@ -61,3 +74,40 @@ def autos(request):
     else:
         formulario_autos=Autosform()
         return render(request,"AppCoder/AUTOS.html", {"formulario": formulario_autos})
+
+
+def buscarAuto(request):
+    return render(request,"AppCoder/buscarAuto.html")
+
+def buscar(request):
+    modelo=request.GET["modelo"]
+    if modelo!="":
+        autos=Autos.objects.filter(modelo=modelo)
+        return render(request, "AppCoder/resultadoAuto.html", {"autos":autos})
+    else:
+        return render(request, "AppCoder/buscarAuto.html", {"mensaje":"no ingresaste nada"})
+    
+
+def buscarCamioneta(request):
+        return render(request,"AppCoder/buscarCamioneta.html")
+
+def buscar2(request):
+    modelo=request.GET["modelo"]
+    if modelo!="":
+        camionetas=Camionetas.objects.filter(modelo=modelo)
+        return render(request, "AppCoder/resultadoCamioneta.html", {"camionetas":camionetas})
+    else:
+        return render(request, "AppCoder/buscarCamioneta.html", {"mensaje":"no ingresaste nada"})
+    
+
+def buscarMoto(request):
+    return render(request,"AppCoder/buscarMoto.html")
+
+def buscar3(request):
+    modelo=request.GET["modelo"]
+    if modelo!="":
+        motos=Motos.objects.filter(modelo=modelo)
+        return render(request, "AppCoder/resultadoMoto.html", {"motos":motos})
+    else:
+        return render(request, "AppCoder/buscarMoto.html", {"mensaje":"no ingresaste nada"})
+    
